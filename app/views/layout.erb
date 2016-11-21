@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>To Visit List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <nav>
+
+      <a class="navbar-brand" href="/">To Visit List</a>
+
+      <% if logged_in? %>
+        <div class="container">
+          <p class="navbar-text">Signed in as XXXXXX</p>
+          <a href="/signin" class="btn btn-default navbar-btn btn-xs">Log out</a>
+        </div>
+
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="/users/:id">Home</a></li>
+          <li role="presentation"><a href="/users/:id/countries">Countries</a></li>
+          <li role="presentation"><a href="/users/:id/cities">Cities</a></li>
+        </ul>
+
+      <% else %>
+
+        <div class="container">
+          <a href="/login" class="btn btn-default navbar-btn btn-xs">Log in</a>
+          <a href="/signup" class="btn btn-default navbar-btn btn-xs">Sign up</a>
+
+
+        </div>
+
+      <%end %>
+
+    </nav>
+
+    <div class="container">
+
+        <%= yield %>
+
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>

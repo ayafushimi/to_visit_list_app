@@ -3,7 +3,7 @@ require './config/environment'
 class ApplicationController < Sinatra::Base
 
   configure do
-    set :views, 'app/views'.to_sym
+    set :views, 'app/views'
     enable :sessions
     set :session_secret, 'visitlist secret'
   end
@@ -21,5 +21,5 @@ class ApplicationController < Sinatra::Base
   get "/" do
     erb :index
   end
-  
+
 end
