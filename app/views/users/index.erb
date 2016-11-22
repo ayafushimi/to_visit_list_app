@@ -1,9 +1,9 @@
-<h1><%=current_user.username%>'s list'</h1>
+<h1><%=current_user.username%>'s list</h1>
 
-<a class="btn btn-default" href="/countries/create" role="button">Add COUNTRY</a>
-<a class="btn btn-default" href="/cities/create" role="button">Add CITY</a>
+<a class="btn btn-default" href="/countries/create" role="button">add COUNTRY</a>
+<a class="btn btn-default" href="/cities/create" role="button">add CITY</a>
 
-<%Country.all.each do |country|%>
+<%current_user.countries.all.each do |country|%>
 
   <h3><a href="/countries/<%=country.id%>"><%=country.name%></a></h3>
 

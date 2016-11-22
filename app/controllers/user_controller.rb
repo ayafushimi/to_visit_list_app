@@ -19,8 +19,8 @@ class UsersController < ApplicationController
   post "/signup" do
     empty_name = params[:username].empty?
     empty_pass = params[:password].empty?
-    exist_name = User.all.detect{|x| x.username = params[:username]}
-
+    exist_name = !!User.all.detect{|x| x.username == params[:username]}
+    binding.pry
     if !(empty_name||empty_pass||exist_name)
       user = User.create(username: params[:username], password: params[:password])
       session[:user_id] = user.id
