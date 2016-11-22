@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     erb :"/users/login"
   end
 
+  get "/logout" do
+    session.clear
+    redirect "/"
+  end
+
   post "/signup" do
     empty_name = params[:username].empty?
     empty_pass = params[:password].empty?
