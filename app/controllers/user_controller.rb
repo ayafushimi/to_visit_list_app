@@ -12,15 +12,17 @@ class UsersController < ApplicationController
     erb :"/users/login"
   end
 
-  post "/login" do
+  post "/signup" do
     empty_name = params[:username].empty?
     empty_pass = params[:password].empty?
     exist_name = User.all.detect{|x| x.username = params[:username]}
 
     if !(empty_name||empty_pass||exist_name)
       user = User.create(username: params[:username], password: params[:password])
+      session[:user_id] = user.id
+      redirect "/user"
     else
-      
+
     end
   end
 
