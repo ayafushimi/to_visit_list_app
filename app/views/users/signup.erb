@@ -8,12 +8,16 @@
   <%end%>
 <%end%>
 
-<form class="<%=@has_error%>" action="/signup" method="post">
-  <label class="<%=@username_label%>" for="username">Username</label>
-  <input class="<%=@username_control%>" type="text" name="username" id="username">
+<form action="/signup" method="post">
+  <div class="form-group <%=@name_error%>">
+    <label class="control-label" for="username">Username</label>
+    <input class="form-control" type="text" name="username" id="username">
+  </div>
 
-  <label class="<%=@password_label%>" for="password">Password</label>
-  <input class="<%=@password_control%>" type="password" name="password" id="password">
+  <div class="form-group <%=@pass_error%>">
+    <label class="control-label" for="password">Password</label>
+    <input class="form-control" type="password" name="password" id="password">
+  </div>
 
   <input type="submit" value="Sign up">
 </form>
