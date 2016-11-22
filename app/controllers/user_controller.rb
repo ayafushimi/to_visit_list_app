@@ -42,6 +42,7 @@ class UsersController < ApplicationController
         @password_label = "control-label"
         @password_control = "form-control"
       end
+      erb :"/users/signup"
     end
   end
 

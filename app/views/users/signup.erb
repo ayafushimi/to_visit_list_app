@@ -1,7 +1,7 @@
 <h1>Sign Up</h1>
 
 <%if flash.has?(:signup_errors)%>
-  <%@signup_errors.each do |err|%>
+  <%flash[:signup_errors].each do |err|%>
     <div class="alert alert-danger" role="alert">
       <%=err%>
     </div>
