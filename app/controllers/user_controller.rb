@@ -26,17 +26,17 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/user"
     else
-      flash[:signup_errors] = []
+      flash.now[:signup_errors] = []
       if empty_name
-        flash[:signup_errors] << "Please enter 'Username'"
-        flash[:name_error] = "has-error"
+        flash.now[:signup_errors] << "Please enter 'Username'"
+        flash.now[:name_error] = "has-error"
       elsif exist_name
-        flash[:signup_errors] << "This Username is already used. Please use another one"
-        flash[:name_error] = "has-error"
+        flash.now[:signup_errors] << "This Username is already used. Please use another one"
+        flash.now[:name_error] = "has-error"
       end
       if empty_pass
-        flash[:signup_errors] << "Please enter 'Password'"
-        flash[:pass_error] = "has-error"
+        flash.now[:signup_errors] << "Please enter 'Password'"
+        flash.now[:pass_error] = "has-error"
       end
       @exist_name = params[:username]
       erb :"/users/signup"
@@ -54,23 +54,23 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
         redirect "/user"
       else
-        flash[:login_errors] = ["Incorrect Password"]
-        flash[:pass_error] = "has-error"
+        flash.now[:login_errors] = ["Incorrect Password"]
+        flash.now[:pass_error] = "has-error"
         @input = params[:username]
         erb :"/users/login"
       end
     else
-      flash[:login_errors] = []
+      flash.now[:login_errors] = []
       if empty_name
-        flash[:login_errors] << "Please enter 'Username'"
-        flash[:name_error] = "has-error"
+        flash.now[:login_errors] << "Please enter 'Username'"
+        flash.now[:name_error] = "has-error"
       elsif invalid_name
-        flash[:login_errors] << "Incorrect Username"
-        flash[:name_error] = "has-error"
+        flash.now[:login_errors] << "Incorrect Username"
+        flash.now[:name_error] = "has-error"
       end
       if empty_pass
-        flash[:login_errors] << "Please enter 'Password'"
-        flash[:pass_error] = "has-error"
+        flash.now[:login_errors] << "Please enter 'Password'"
+        flash.now[:pass_error] = "has-error"
       end
       @input = params[:username]
       erb :"/users/login"
