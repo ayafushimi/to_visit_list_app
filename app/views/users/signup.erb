@@ -8,12 +8,12 @@
   <%end%>
 <%end%>
 
-<form class="" action="/signup" method="post">
-  <label for="">Username</label>
-  <input type="text" name="username">
+<form class="<%@has_error%>" action="/signup" method="post">
+  <label class="<%@username_control%>" for="username">Username</label>
+  <input class="<%@username_control%>" type="text" name="username" id="username">
 
-  <label for="">Password</label>
-  <input type="password" name="password">
+  <label class="<%@password_control%>" for="password">Password</label>
+  <input class="<%@password_control%>" type="password" name="password" id="password">
 
   <input type="submit" value="Sign up">
 </form>
