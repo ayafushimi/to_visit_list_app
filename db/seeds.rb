@@ -11,7 +11,6 @@ countries_list = {
 countries_list.each do |name, arr|
   p = Country.new(name: name, region: arr[0])
   p.users << arr[1]
-  # arr[1].countries << p
   p.save
   arr[1].save
 end
