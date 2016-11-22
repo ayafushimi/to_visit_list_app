@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'thin'
 gem 'shotgun'
 gem 'bcrypt'
+gem 'rack-flash3'
 
 group :development do
   gem 'pry'
