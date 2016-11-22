@@ -20,13 +20,21 @@ class UsersController < ApplicationController
     empty_name = params[:username].empty?
     empty_pass = params[:password].empty?
     exist_name = !!User.all.detect{|x| x.username == params[:username]}
-    binding.pry
+
     if !(empty_name||empty_pass||exist_name)
       user = User.create(username: params[:username], password: params[:password])
       session[:user_id] = user.id
       redirect "/user"
     else
-
+      @signup_errors = []
+      if empty_name
+        @signup_errors << "Please enter 'username'"
+      elsif exist_name
+        @signup_errors << "That username is already used. Please use another username"
+      end
+      if empty_pass
+        @signup_errors << "Please enter 'password'"
+      end
     end
   end
 
