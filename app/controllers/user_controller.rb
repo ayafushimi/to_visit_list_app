@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     erb :"/users/login"
   end
 
+  get "/signup" do
+    erb :"/users/signup"
+  end
+
   post "/signup" do
     empty_name = params[:username].empty?
     empty_pass = params[:password].empty?
