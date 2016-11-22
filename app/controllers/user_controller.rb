@@ -33,12 +33,12 @@ class UsersController < ApplicationController
       elsif exist_name
         flash[:signup_errors] << "This Username is already used. Please use another one"
         flash[:name_error] = "has-error"
-        @exist_name = params[:username]
       end
       if empty_pass
         flash[:signup_errors] << "Please enter 'Password'"
         flash[:pass_error] = "has-error"
       end
+      @exist_name = params[:username]
       erb :"/users/signup"
     end
   end
