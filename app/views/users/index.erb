@@ -1,0 +1,23 @@
+<h1><%=current_user.username%>'s list'</h1>
+
+<a class="btn btn-default" href="/countries/create" role="button">Add COUNTRY</a>
+<a class="btn btn-default" href="/cities/create" role="button">Add CITY</a>
+
+<%Country.all.each do |country|%>
+
+  <h3><a href="/countries/<%=country.id%>"><%=country.name%></a></h3>
+
+  <%country.cities do |city|%>
+
+    <div class="row">
+      <div class="col-md-6"><a href="/ciries/<%=city.id%>"><%=city.name%></a></div>
+      <div class="col-md-6">
+        <%city.rank.times do%>
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+        <%end%>
+      </div>
+    </div>
+
+  <%end%>
+
+<%end%>
