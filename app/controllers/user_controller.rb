@@ -26,19 +26,19 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/user"
     else
-      @signup_errors = []
+      flash[:signup_errors] = []
       @has_error = "has-error"
       if empty_name
-        @signup_errors << "Please enter 'username'"
+        flash[:signup_errors] << "Please enter 'username'"
         @username_label = "control-label"
         @username_control = "form-control"
       elsif exist_name
-        @signup_errors << "That username is already used. Please use another username"
+        flash[:signup_errors] << "That username is already used. Please use another username"
         @username_label = "control-label"
         @username_control = "form-control"
       end
       if empty_pass
-        @signup_errors << "Please enter 'password'"
+        flash[:signup_errors] << "Please enter 'password'"
         @password_label = "control-label"
         @password_control = "form-control"
       end
