@@ -9,7 +9,7 @@
   <div class="form-group <%=flash[:country_region_error]%>">
     <label class="control-label" for="region">Region</label>
     <select class="form-control" name="country[region]" id="region" value="<%=@region_input%>">
-      <option>Select Region</option>
+      <option value="">Select Region</option>
       <option value="Africa">Africa</option>
       <option value="Americas">Americas</option>
       <option value="Asia">Asia</option>
@@ -28,7 +28,7 @@
   <div class="form-group <%=flash[:city_rank_error]%>">
     <label class="control-label" for="rank">Rank (How much do you want to visit this city? 5:very - 1:little)</label>
     <select class="form-control" name="city[rank]" id="rank" value="<%=@rank_input%>">
-      <option>Select Rank</option>
+      <option value="">Select Rank</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
