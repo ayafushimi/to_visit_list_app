@@ -7,17 +7,24 @@
 
   <h3><a href="/countries/<%=country.id%>"><%=country.name%></a></h3>
 
-  <%country.cities do |city|%>
-
-    <div class="row">
-      <div class="col-md-6"><a href="/ciries/<%=city.id%>"><%=city.name%></a></div>
-      <div class="col-md-6">
-        <%city.rank.times do%>
-          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-        <%end%>
-      </div>
-    </div>
-
-  <%end%>
+  <table class="table table-hover">
+    <%country.cities.each do |city|%>
+      <tbody class="container">
+        <tr class="row">
+          <th scope="row" class="col-md-6">
+            <a href="/cities/<%=city.id%>"><%=city.name%></a>
+          </th>
+          <td class="col-md-6">
+            <%city.rank.times do%>
+              <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <%end%>
+            <%(5 - city.rank).times do%>
+              <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            <%end%>
+          </td>
+        </tr>
+      </tbody>
+    <%end%>
+  </table>
 
 <%end%>
