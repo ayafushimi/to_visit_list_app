@@ -32,7 +32,7 @@ class CountryController < ApplicationController
     exist_city = !params[:city][:name].empty? && !!City.all.detect{|x| x.name == params[:city][:name]}
     empty_rank = !params[:city][:name].empty? && params[:city][:rank].empty?
 
-    if !(empty_country_name||empty_region||exist_country||empty_rank)
+    if !(empty_country_name||empty_region||exist_country||exist_city||empty_rank)
       country = Country.create(params[:country])
       country.user = current_user
       country.save
@@ -43,16 +43,15 @@ class CountryController < ApplicationController
       end
       redirect "/countries/#{country.id}"
     else
-      flash.now[:login_errors] = []
+      flash.now[:create_errors] = []
       if empty_country_name
 
       elsif exist_country
 
-      end
-      if empty_region
+      elsif exist_city
 
       end
-      if exist_country
+      if empty_region
 
       end
       if empty_rank
