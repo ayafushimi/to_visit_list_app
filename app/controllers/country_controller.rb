@@ -36,11 +36,13 @@ class CountryController < ApplicationController
       country = Country.create(params[:country])
       country.user = current_user
       country.save
-      # if !params[:city][:name].empty?
-      #   city = City.find_or_create(params[:city])
-      #   city.country = country
-      # end
-
+      if !params[:city][:name].empty?
+        city = City.create(params[:city])
+        city.country = country
+        city.save
+      end
+      redirect "/countries/#{country.id}"
+    else
     end
   end
 
