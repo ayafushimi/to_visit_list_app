@@ -52,10 +52,10 @@ class CountryController < ApplicationController
         flash.now[:create_errors] << "This City already exists. Please check <a href='/countries/#{City.all.detect{|x| x.name == params[:city][:name]}.id}' class='alert-link'>this page</a>"
       end
       if empty_region
-
+        flash.now[:create_errors] << "Please select 'Region'"
       end
       if empty_rank
-
+        flash.now[:create_errors] << "Please select 'Rank' of city"
       end
       erb :"/countries/create"
     end
