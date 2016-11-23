@@ -1,5 +1,13 @@
 <h1>Add Country</h1>
 
+<%if flash.has?(:create_errors)%>
+  <%flash[:create_errors].each do |err|%>
+    <div class="alert alert-danger" role="alert">
+      <%=err%>
+    </div>
+  <%end%>
+<%end%>
+
 <form action="/countries/create" method="post">
   <div class="form-group <%=flash[:country_name_error]%>">
     <label class="control-label" for="coutry_name">Country Name</label>

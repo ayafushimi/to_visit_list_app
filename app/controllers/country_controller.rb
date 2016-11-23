@@ -43,6 +43,21 @@ class CountryController < ApplicationController
       end
       redirect "/countries/#{country.id}"
     else
+      flash.now[:login_errors] = []
+      if empty_country_name
+
+      elsif exist_country
+
+      end
+      if empty_region
+
+      end
+      if exist_country
+
+      end
+      if empty_rank
+
+      end
     end
   end
 
