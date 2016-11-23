@@ -16,13 +16,13 @@
 
   <div class="form-group <%=flash[:country_region_error]%>">
     <label class="control-label" for="region">Region</label>
-    <select class="form-control" name="country[region]" id="region" value="<%=@region_input%>">
+    <select class="form-control" name="country[region]" id="region">
       <option value="">Select Region</option>
-      <option value="Africa">Africa</option>
-      <option value="Americas">Americas</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="Oceania">Oceania</option>
+      <option value="Africa" <%=@region_africa%>>Africa</option>
+      <option value="Americas" <%=@region_america%>>Americas</option>
+      <option value="Asia" <%=@region_asia%>>Asia</option>
+      <option value="Europe" <%=@region_europe%>>Europe</option>
+      <option value="Oceania" <%=@region_oceania%>>Oceania</option>
     </select>
   </div>
 
