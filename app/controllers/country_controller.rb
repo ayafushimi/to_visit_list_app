@@ -114,4 +114,43 @@ class CountryController < ApplicationController
     end
   end
 
+  post "/countries/:id/edit" do
+    @country = Country.find(params[:id])
+    empty_country_name = params[:country][:name].empty?
+    empty_region = params[:country][:region].empty?
+    exist_country = Country.all.detect{|x| x.name == params[:country][:name]} && params[:country][:name] != @country.name
+
+    if !(empty_country_name||empty_region||exist_country)
+      @country.update(params[:country])
+      redirect "/countries/#{@country.id}"
+    else
+      flash.now[:edit_errors] = []
+      if empty_country_name
+        flash.now[:edit_errors] << "Please enter 'Country Name'"
+        flash.now[:country_name_error] = "has-error"
+      elsif exist_country
+        flash.now[:edit_errors] << "This Country already exists. Please check <a href='/countries/#{exist_country.id}' class='alert-link'>this page</a>"
+        flash.now[:country_name_error] = "has-error"
+      end
+      if empty_region
+        flash.now[:edit_errors] << "Please select 'Region'"
+        flash.now[:country_region_error] = "has-error"
+      end
+      @country_name_input = params[:country][:name]
+      case params[:country][:region]
+      when "Africa"
+        @region_africa = "selected"
+      when "Americas"
+        @region_america = "selected"
+      when "Asia"
+        @region_asia = "selected"
+      when "Europe"
+        @region_europe = "selected"
+      when "Oceania"
+        @region_oceania = "selected"
+      end
+      erb :"/countries/edit"
+    end
+  end
+
 end
