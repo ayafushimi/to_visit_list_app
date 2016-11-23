@@ -63,21 +63,18 @@ class CountryController < ApplicationController
         flash.now[:city_rank_error] = "has-error"
       end
       @country_name_input = params[:country][:name]
+      binding.pry
       case params[:country][:region]
       when "Africa"
-        @region_africa = selected
-      end
+        @region_africa = "selected"
       when "Americas"
-        @region_america = selected
-      end
+        @region_america = "selected"
       when "Asia"
-        @region_asia = selected
-      end
+        @region_asia = "selected"
       when "Europe"
-        @region_europe = selected
-      end
+        @region_europe = "selected"
       when "Oceania"
-        @region_oceania = selected
+        @region_oceania = "selected"
       end
 
       erb :"/countries/create"
