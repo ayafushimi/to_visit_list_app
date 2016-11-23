@@ -1,0 +1,21 @@
+<h1><%=@country.name%></h1>
+
+<table class="table table-hover">
+  <%@country.cities.select{|x| x.users.include?(current_user)}.each do |city|%>
+    <tbody class="container">
+      <tr class="row">
+        <th scope="row" class="col-md-6">
+          <a href="/cities/<%=city.id%>"><%=city.name%></a>
+        </th>
+        <td class="col-md-6">
+          <%city.rank.times do%>
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+          <%end%>
+          <%(5 - city.rank).times do%>
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+          <%end%>
+        </td>
+      </tr>
+    </tbody>
+  <%end%>
+</table>
