@@ -1,0 +1,42 @@
+<h1>Add Country</h1>
+
+<form action="/countries/create" method="post">
+  <div class="form-group <%=flash[:country_name_error]%>">
+    <label class="control-label" for="coutry_name">Country Name</label>
+    <input class="form-control" type="text" name="country[name]" id="coutry_name" value="<%=@country_name_input%>">
+  </div>
+
+  <div class="form-group <%=flash[:country_region_error]%>">
+    <label class="control-label" for="region">Region</label>
+    <select class="form-control" name="country[region]" id="region" value="<%=@region_input%>">
+      <option>Select region</option>
+      <option value="Africa">Africa</option>
+      <option value="Americas">Americas</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="Oceania">Oceania</option>
+    </select>
+  </div>
+
+  <h3>Add City (optional)</h3>
+
+  <div class="form-group">
+    <label class="control-label" for="city_name">City Name</label>
+    <input class="form-control" type="text" name="city[name]" id="city_name" value="<%=@city_name_input%>">
+  </div>
+
+  <div class="form-group <%=flash[:city_rank_error]%>">
+    <label class="control-label" for="rank">Rank (How much do you want to visit this city?)</label>
+    <select class="form-control" name="city[rank]" id="rank" value="<%=@rank_input%>">
+      <option>Select Rank</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+
+
+  <input type="submit" value="Add">
+</form>

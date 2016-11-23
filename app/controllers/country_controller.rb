@@ -8,6 +8,14 @@ class CountryController < ApplicationController
     end
   end
 
+  get "/countries/create" do
+    if logged_in?
+      erb :"/countries/create"
+    else
+      redirect_to_login
+    end
+  end
+
   get "/countries/:id" do
     if logged_in?
       @country = Country.find(params[:id])
