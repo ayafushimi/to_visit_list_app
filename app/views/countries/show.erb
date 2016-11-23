@@ -1,5 +1,12 @@
 <h1><%=@country.name%></h1>
 
+<a class="btn btn-default" href="/countries/<%=@country.id%>/edit" role="button">EDIT</a>
+<a class="btn btn-default" href="/countries/<%=@country.id%>/delete" role="button">DELETE</a>
+
+<h3>Region: <strong><%=@country.region%></strong></h3>
+
+<h3>Cities</h3>
+
 <table class="table table-hover">
   <%@country.cities.select{|x| x.users.include?(current_user)}.each do |city|%>
     <tbody class="container">
