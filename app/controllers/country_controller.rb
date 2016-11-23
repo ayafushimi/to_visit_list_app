@@ -35,6 +35,7 @@ class CountryController < ApplicationController
     if !(empty_country_name||empty_region||exist_country||empty_rank)
       country = Country.create(params[:country])
       country.user = current_user
+      country.save
       # if !params[:city][:name].empty?
       #   city = City.find_or_create(params[:city])
       #   city.country = country
