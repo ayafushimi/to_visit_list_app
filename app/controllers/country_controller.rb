@@ -28,7 +28,7 @@ class CountryController < ApplicationController
   post "/countries/create" do
     empty_country_name = params[:country][:name].empty?
     empty_region = params[:country][:region].empty?
-    exist_country = !!Country.all.detect{|x| x.name == params[:country][:name]}
+    exist_country = Country.all.detect{|x| x.name == params[:country][:name]}
     exist_city = !params[:city][:name].empty? && !!City.all.detect{|x| x.name == params[:city][:name]}
     empty_rank = !params[:city][:name].empty? && params[:city][:rank].empty?
 
@@ -45,9 +45,9 @@ class CountryController < ApplicationController
     else
       flash.now[:create_errors] = []
       if empty_country_name
-
+        flash.now[:create_errors] << "Please enter 'Country Name'"
       elsif exist_country
-
+        flash.now[:create_errors] << "This Country already exists. Please check <a href='/countries/#{exist_country.id}' class='alert-link'>this page</a>"
       elsif exist_city
 
       end
@@ -57,6 +57,7 @@ class CountryController < ApplicationController
       if empty_rank
 
       end
+      erb :"/countries/create"
     end
   end
 
