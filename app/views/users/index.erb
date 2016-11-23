@@ -8,7 +8,7 @@
   <h3><a href="/countries/<%=country.id%>"><%=country.name%></a></h3>
 
   <table class="table table-hover">
-    <%country.cities.select{|x| x.users.include?(current_user)}.each do |city|%>
+    <%country.cities.each do |city|%>
       <tbody class="container">
         <tr class="row">
           <th scope="row" class="col-md-6">
