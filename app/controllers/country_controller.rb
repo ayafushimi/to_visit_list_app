@@ -47,6 +47,15 @@ class CountryController < ApplicationController
     end
   end
 
+  get "/countries/:id/delete" do
+    if logged_in?
+      Country.find(params[:id]).delete
+      redirect "/countries"
+    else
+      redirect_to_login
+    end
+  end
+
   post "/countries/create" do
     empty_country_name = params[:country][:name].empty?
     empty_region = params[:country][:region].empty?
