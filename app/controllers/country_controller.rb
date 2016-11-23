@@ -49,7 +49,7 @@ class CountryController < ApplicationController
       elsif exist_country
         flash.now[:create_errors] << "This Country already exists. Please check <a href='/countries/#{exist_country.id}' class='alert-link'>this page</a>"
       elsif exist_city
-
+        flash.now[:create_errors] << "This City already exists. Please check <a href='/countries/#{City.all.detect{|x| x.name == params[:city][:name]}.id}' class='alert-link'>this page</a>"
       end
       if empty_region
 
