@@ -28,6 +28,19 @@ class CountryController < ApplicationController
   get "/countries/:id/edit" do
     if logged_in?
       @country = Country.find(params[:id])
+      @country_name_input = @country.name
+      case @country.region
+      when "Africa"
+        @region_africa = "selected"
+      when "Americas"
+        @region_america = "selected"
+      when "Asia"
+        @region_asia = "selected"
+      when "Europe"
+        @region_europe = "selected"
+      when "Oceania"
+        @region_oceania = "selected"
+      end
       erb :"/countries/edit"
     else
       redirect_to_login
