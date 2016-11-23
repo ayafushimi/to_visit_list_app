@@ -1,7 +1,8 @@
 <h1><%=@country.name%></h1>
 
-<a class="btn btn-default" href="/countries/<%=@country.id%>/edit" role="button">EDIT</a>
-<a class="btn btn-default" href="/countries/<%=@country.id%>/delete" role="button">DELETE</a>
+<a class="btn btn-primary" href="/cities/create" role="button">add CITY</a>
+<a class="btn btn-default" href="/countries/<%=@country.id%>/edit" role="button">edit</a>
+<a class="btn btn-default" href="/countries/<%=@country.id%>/delete" role="button">delete</a>
 
 <h3>Region: <strong><%=@country.region%></strong></h3>
 
