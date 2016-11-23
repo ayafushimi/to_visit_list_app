@@ -1,1 +1,10 @@
 <h1>Country List</h1>
+
+<a class="btn btn-default" href="/countries/create" role="button">add COUNTRY</a>
+<a class="btn btn-default" href="/cities/create" role="button">add CITY</a>
+
+<%current_user.countries.all.each do |country|%>
+
+  <h3><a href="/countries/<%=country.id%>"><%=country.name%></a><span class="badge"><%=country.cities.count%> cities</span></h3>
+
+<%end%>
