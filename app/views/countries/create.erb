@@ -35,13 +35,13 @@
 
   <div class="form-group <%=flash[:city_rank_error]%>">
     <label class="control-label" for="rank">Rank (How much do you want to visit this city?)</label>
-    <select class="form-control" name="city[rank]" id="rank" value="<%=@rank_input%>">
+    <select class="form-control" name="city[rank]" id="rank">
       <option value="">Select Rank</option>
-      <option value="1">1 very</option>
-      <option value="2">2</option>
-      <option value="3">3 so-so</option>
-      <option value="4">4</option>
-      <option value="5">5 little</option>
+      <option value="5" <%=@rank5%>>5 very</option>
+      <option value="4" <%=@rank4%>>4</option>
+      <option value="3" <%=@rank3%>>3 so-so</option>
+      <option value="2" <%=@rank2%>>2</option>
+      <option value="1" <%=@rank1%>>1 little</option>
     </select>
   </div>
 
