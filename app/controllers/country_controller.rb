@@ -25,4 +25,13 @@ class CountryController < ApplicationController
     end
   end
 
+  post "/countries/create" do
+    empty_country_name = params[:country][:name].empty?
+    empty_region = params[:country][:region].empty?
+    exist_country = !!Country.all.detect{|x| x.name == params[:country][:name]}
+    empty_rank = !params[:city][:name].empty? && params[:city][:rank].empty?
+
+
+  end
+
 end
