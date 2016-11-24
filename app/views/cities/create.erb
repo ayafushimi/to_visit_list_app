@@ -28,7 +28,7 @@
 
   <div class="form-group  <%=flash[:country_error]%>">
     <label class="control-label" for="country">Country</label>
-    <select class="form-control" name="country_id" id="country">
+    <select onchange="document.getElementById('coutry_name').disabled = !(this.value=='create_country');document.getElementById('region').disabled = !(this.value=='create_country');" class="form-control" name="country_id" id="country">
       <option value="">Select Country</option>
       <optgroup label="Africa">
         <%current_user.countries.all.select{|x| x.region=="Africa"}.each do |country|%>
@@ -66,12 +66,12 @@
 
   <div class="form-group <%=flash[:country_name_error]%>">
     <label class="control-label" for="coutry_name">Country Name</label>
-    <input class="form-control" type="text" name="country[name]" id="coutry_name" value="<%=@country_name_input%>">
+    <input class="form-control" type="text" name="country[name]" id="coutry_name" value="<%=@country_name_input%>" disabled>
   </div>
 
   <div class="form-group <%=flash[:country_region_error]%>">
     <label class="control-label" for="region">Region</label>
-    <select class="form-control" name="country[region]" id="region">
+    <select class="form-control" name="country[region]" id="region" disabled>
       <option value="">Select Region</option>
       <option value="Africa" <%=@region_africa%>>Africa</option>
       <option value="Americas" <%=@region_america%>>Americas</option>
@@ -80,8 +80,6 @@
       <option value="Oceania" <%=@region_oceania%>>Oceania</option>
     </select>
   </div>
-
-
 
   <input type="submit" value="Add">
 </form>
