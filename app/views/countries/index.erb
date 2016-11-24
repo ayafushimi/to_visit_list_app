@@ -2,8 +2,38 @@
 
 <a class="btn btn-default" href="/countries/create" role="button">add COUNTRY</a>
 
-<%current_user.countries.all.each do |country|%>
 
-  <h3><a href="/countries/<%=country.id%>"><%=country.name%></a><span class="badge"><%=country.cities.count%> cities</span></h3>
+<h3>Africa</h3>
+  <div class="container">
+    <%current_user.countries.all.select{|x| x.region=="Africa"}.each do |country|%>
+      <h4><a href="/countries/<%=country.id%>"><%=country.name%></a><span class="badge"><%=country.cities.count%> cities</span></h4>
+    <%end%>
+  </div>
 
-<%end%>
+<h3>Americas</h3>
+  <div class="container">
+    <%current_user.countries.all.select{|x| x.region=="Americas"}.each do |country|%>
+      <h4><a href="/countries/<%=country.id%>"><%=country.name%></a><span class="badge"><%=country.cities.count%> cities</span></h4>
+    <%end%>
+  </div>
+
+<h3>Asia</h3>
+  <div class="container">
+    <%current_user.countries.all.select{|x| x.region=="Asia"}.each do |country|%>
+      <h4><a href="/countries/<%=country.id%>"><%=country.name%></a><span class="badge"><%=country.cities.count%> cities</span></h4>
+    <%end%>
+  </div>
+
+<h3>Europe</h3>
+  <div class="container">
+    <%current_user.countries.all.select{|x| x.region=="Europe"}.each do |country|%>
+      <h4><a href="/countries/<%=country.id%>"><%=country.name%></a><span class="badge"><%=country.cities.count%> cities</span></h4>
+    <%end%>
+  </div>
+
+<h3>Oceania</h3>
+  <div class="container">
+    <%current_user.countries.all.select{|x| x.region=="Oceania"}.each do |country|%>
+      <h4><a href="/countries/<%=country.id%>"><%=country.name%></a><span class="badge"><%=country.cities.count%> cities</span></h4>
+    <%end%>
+  </div>
