@@ -1,0 +1,23 @@
+<h1>City List</h1>
+
+<a class="btn btn-default" href="/countries/create" role="button">add COUNTRY</a>
+<a class="btn btn-default" href="/cities/create" role="button">add CITY</a>
+
+<%current_user.countries.all.each do |country|%>
+  <h3><%=country.name%></h3>
+  <div class="container">
+    <%country.cities.each do |city|%>
+      <h4>
+        <a href="/cities/<%=city.id%>"><%=city.name%></a>
+        <span class="badge">
+          <%city.rank.times do%>
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+          <%end%>
+          <%(5 - city.rank).times do%>
+            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+          <%end%>
+        </span>
+      </h4>
+    <%end%>    
+  </div>
+<%end%>
