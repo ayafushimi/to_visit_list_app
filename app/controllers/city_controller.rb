@@ -26,17 +26,17 @@ class CityController < ApplicationController
     exist_country = Country.all.detect{|x| x.name == params[:country][:name]}
     empty_region = create_country && params[:country][:region].empty?
 
-    # if !(empty_country_name||empty_region||exist_country||exist_city||empty_rank)
-    #   country = Country.create(params[:country])
-    #   country.user = current_user
-    #   country.save
-    #   if !params[:city][:name].empty?
-    #     city = City.create(params[:city])
-    #     city.country = country
-    #     city.save
-    #   end
-    #   redirect "/countries/#{country.id}"
-    # else
+    if !(empty_name||exist_city||empty_rank||empty_country||empty_country_name||exist_country||empty_region)
+      city = City.create(name:params[:name], rank:params[:rank])
+      if !create_country
+        city.update(country_id:params[:country_id])
+      else
+        country = Country.create(params[:country])
+        country.update(user_id:current_user.id)
+        city.update(country_id:country.id)
+      end
+      redirect "/cities/#{city.id}"
+    else
     #   flash.now[:create_errors] = []
     #   if empty_country_name
     #     flash.now[:create_errors] << "Please enter 'Country Name'"
@@ -83,7 +83,7 @@ class CityController < ApplicationController
     #     @rank1 = "selected"
     #   end
     #   erb :"/countries/create"
-    # end
+    end
   end
 
 end
