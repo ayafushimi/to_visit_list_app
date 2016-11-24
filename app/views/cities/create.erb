@@ -1,0 +1,87 @@
+<h1>Add City</h1>
+
+<%if flash.has?(:create_errors)%>
+  <%flash[:create_errors].each do |err|%>
+    <div class="alert alert-danger" role="alert">
+      <%=err%>
+    </div>
+  <%end%>
+<%end%>
+
+<form action="/cities/create" method="post">
+  <div class="form-group <%=flash[:name_error]%>">
+    <label class="control-label" for="name">City Name</label>
+    <input class="form-control" type="text" name="name" id="name" value="<%=@name_input%>">
+  </div>
+
+  <div class="form-group <%=flash[:rank_error]%>">
+    <label class="control-label" for="rank">Rank (How much do you want to visit this city?)</label>
+    <select class="form-control" name="rank" id="rank">
+      <option value="">Select Rank</option>
+      <option value="5" <%=@rank5%>>5 very</option>
+      <option value="4" <%=@rank4%>>4</option>
+      <option value="3" <%=@rank3%>>3 so-so</option>
+      <option value="2" <%=@rank2%>>2</option>
+      <option value="1" <%=@rank1%>>1 little</option>
+    </select>
+  </div>
+
+  <div class="form-group  <%=flash[:country_error]%>">
+    <label class="control-label" for="country">Country</label>
+    <select class="form-control" name="country_id" id="country">
+      <option value="">Select Country</option>
+      <optgroup label="Africa">
+        <%current_user.countries.all.select{|x| x.region=="Africa"}.each do |country|%>
+          <%var="@#{country.id}"%>
+          <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
+        <%end%>
+      </optgroup>
+      <optgroup label="Americas">
+        <%current_user.countries.all.select{|x| x.region=="Americas"}.each do |country|%>
+          <%var="@#{country.id}"%>
+          <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
+        <%end%>
+      </optgroup>
+      <optgroup label="Asia">
+        <%current_user.countries.all.select{|x| x.region=="Asia"}.each do |country|%>
+          <%var="@#{country.id}"%>
+          <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
+        <%end%>
+      </optgroup>
+      <optgroup label="Europe">
+        <%current_user.countries.all.select{|x| x.region=="Europe"}.each do |country|%>
+          <%var="@#{country.id}"%>
+          <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
+        <%end%>
+      </optgroup>
+      <optgroup label="Oceania">
+        <%current_user.countries.all.select{|x| x.region=="Oceania"}.each do |country|%>
+          <%var="@#{country.id}"%>
+          <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
+        <%end%>
+      </optgroup>
+      <option value="create_country">Add New Country</option>
+    </select>
+  </div>
+
+  <div class="form-group <%=flash[:country_name_error]%>">
+    <label class="control-label" for="coutry_name">Country Name</label>
+    <input class="form-control" type="text" name="country[name]" id="coutry_name" value="<%=@country_name_input%>">
+  </div>
+
+  <div class="form-group <%=flash[:country_region_error]%>">
+    <label class="control-label" for="region">Region</label>
+    <select class="form-control" name="country[region]" id="region">
+      <option value="">Select Region</option>
+      <option value="Africa" <%=@region_africa%>>Africa</option>
+      <option value="Americas" <%=@region_america%>>Americas</option>
+      <option value="Asia" <%=@region_asia%>>Asia</option>
+      <option value="Europe" <%=@region_europe%>>Europe</option>
+      <option value="Oceania" <%=@region_oceania%>>Oceania</option>
+    </select>
+  </div>
+
+
+
+  <input type="submit" value="Add">
+</form>

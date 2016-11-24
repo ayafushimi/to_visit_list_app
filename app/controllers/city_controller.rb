@@ -8,4 +8,12 @@ class CityController < ApplicationController
     end
   end
 
+  get "/cities/create" do
+    if logged_in?
+      erb :"/cities/create"
+    else
+      redirect_to_login
+    end
+  end
+
 end
