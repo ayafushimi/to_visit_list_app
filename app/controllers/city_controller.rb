@@ -69,7 +69,8 @@ class CityController < ApplicationController
           flash.now[:create_errors] << "Please enter 'Country Name'"
           flash.now[:country_name_error] = "has-error"
         elsif exist_country
-
+          flash.now[:create_errors] << "This Country already exists. Please select from the avobe list"
+          flash.now[:country_name_error] = "has-error"
         end
         if empty_region
 
