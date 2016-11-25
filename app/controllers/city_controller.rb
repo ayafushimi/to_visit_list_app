@@ -36,7 +36,7 @@ class CityController < ApplicationController
       exist_country = Country.all.detect{|x| x.name == params[:country][:name]}
       empty_region =  params[:country][:region].empty?
     end
-    
+
     if !(empty_name||exist_city||empty_rank||empty_country||empty_country_name||exist_country||empty_region)
       city = City.create(name:params[:name], rank:params[:rank])
       if !create_country
@@ -48,25 +48,33 @@ class CityController < ApplicationController
       end
       redirect "/cities/#{city.id}"
     else
-    #   flash.now[:create_errors] = []
-    #   if empty_country_name
+      flash.now[:create_errors] = []
+      if empty_name
     #     flash.now[:create_errors] << "Please enter 'Country Name'"
     #     flash.now[:country_name_error] = "has-error"
-    #   elsif exist_country
+      elsif exist_city
     #     flash.now[:create_errors] << "This Country already exists. Please check <a href='/countries/#{exist_country.id}' class='alert-link'>this page</a>"
     #     flash.now[:country_name_error] = "has-error"
-    #   elsif exist_city
-    #     flash.now[:create_errors] << "This City already exists. Please check <a href='/countries/#{City.all.detect{|x| x.name == params[:city][:name]}.id}' class='alert-link'>this page</a>"
-    #     flash.now[:city_name_error] = "has-error"
-    #   end
-    #   if empty_region
+      end
+      if empty_rank
     #     flash.now[:create_errors] << "Please select 'Region'"
     #     flash.now[:country_region_error] = "has-error"
-    #   end
-    #   if empty_rank
+      end
+      if empty_country
     #     flash.now[:create_errors] << "Please select 'Rank' of city"
     #     flash.now[:city_rank_error] = "has-error"
-    #   end
+      end
+      if create_country
+        if empty_country_name
+
+        elsif exist_country
+
+        end
+        if empty_region
+
+        end
+      end
+
     #   @country_name_input = params[:country][:name]
     #   case params[:country][:region]
     #   when "Africa"
