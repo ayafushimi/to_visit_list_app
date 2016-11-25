@@ -10,8 +10,8 @@ class CityController < ApplicationController
 
   get "/cities/create" do
     if logged_in?
-      @country_name_disabled = ""
-      @country_region_disabled = ""
+      @country_name_disabled = "disabled"
+      @country_region_disabled = "disabled"
       erb :"/cities/create"
     else
       redirect_to_login
@@ -22,6 +22,33 @@ class CityController < ApplicationController
     if logged_in?
       @city = City.find(params[:id])
       erb :"/cities/show"
+    else
+      redirect_to_login
+    end
+  end
+
+  get "/cities/:id/edit" do
+    if logged_in?
+      @city = City.find(params[:id])
+      @name_input = @city.name
+      case @city.rank
+      when 5
+        @rank5 = "selected"
+      when 4
+        @rank4 = "selected"
+      when 3
+        @rank3 = "selected"
+      when 2
+        @rank2 = "selected"
+      when 1
+        @rank1 = "selected"
+      end
+      val = "@country_#{@city.country.id}"
+      value = "selected"
+      eval("#{val} = value")
+      @country_name_disabled = "disabled"
+      @country_region_disabled = "disabled"
+      erb :"/cities/edit"
     else
       redirect_to_login
     end
