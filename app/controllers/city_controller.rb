@@ -91,6 +91,14 @@ class CityController < ApplicationController
       when "1"
         @rank1 = "selected"
       end
+      current_user.countries.all do |country|
+        if country.id == params[:country_id]
+          var = "@#{country.id}"
+          value = "selected"
+          eval("#{var} = value")
+        end
+      end
+
     #   case params[:country][:region]
     #   when "Africa"
     #     @region_africa = "selected"
