@@ -32,31 +32,31 @@
       <option value="">Select Country</option>
       <optgroup label="Africa">
         <%current_user.countries.all.select{|x| x.region=="Africa"}.each do |country|%>
-          <%var="@#{country.id}"%>
+          <%var="@counrtry_#{country.id}"%>
           <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Americas">
         <%current_user.countries.all.select{|x| x.region=="Americas"}.each do |country|%>
-          <%var="@#{country.id}"%>
+          <%var="@counrtry_#{country.id}"%>
           <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Asia">
         <%current_user.countries.all.select{|x| x.region=="Asia"}.each do |country|%>
-          <%var="@#{country.id}"%>
+          <%var="@counrtry_#{country.id}"%>
           <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Europe">
         <%current_user.countries.all.select{|x| x.region=="Europe"}.each do |country|%>
-          <%var="@#{country.id}"%>
+          <%var="@counrtry_#{country.id}"%>
           <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Oceania">
         <%current_user.countries.all.select{|x| x.region=="Oceania"}.each do |country|%>
-          <%var="@#{country.id}"%>
+          <%var="@counrtry_#{country.id}"%>
           <option value="<%=country.id%>" <%=var%>><%=country.name%></option>
         <%end%>
       </optgroup>
