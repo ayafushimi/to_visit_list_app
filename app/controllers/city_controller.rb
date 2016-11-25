@@ -50,8 +50,8 @@ class CityController < ApplicationController
     else
       flash.now[:create_errors] = []
       if empty_name
-    #     flash.now[:create_errors] << "Please enter 'Country Name'"
-    #     flash.now[:country_name_error] = "has-error"
+        flash.now[:create_errors] << "Please enter 'City Name'"
+        flash.now[:name_error] = "has-error"
       elsif exist_city
     #     flash.now[:create_errors] << "This Country already exists. Please check <a href='/countries/#{exist_country.id}' class='alert-link'>this page</a>"
     #     flash.now[:country_name_error] = "has-error"
