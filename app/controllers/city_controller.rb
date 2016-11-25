@@ -57,8 +57,8 @@ class CityController < ApplicationController
         flash.now[:name_error] = "has-error"
       end
       if empty_rank
-    #     flash.now[:create_errors] << "Please select 'Region'"
-    #     flash.now[:country_region_error] = "has-error"
+        flash.now[:create_errors] << "Please select 'Rank'"
+        flash.now[:rank_error] = "has-error"
       end
       if empty_country
     #     flash.now[:create_errors] << "Please select 'Rank' of city"
