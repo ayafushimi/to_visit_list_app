@@ -73,7 +73,8 @@ class CityController < ApplicationController
           flash.now[:country_name_error] = "has-error"
         end
         if empty_region
-
+          flash.now[:create_errors] << "Please select 'Region'"
+          flash.now[:country_region_error] = "has-error"
         end
       end
 
