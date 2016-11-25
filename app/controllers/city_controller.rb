@@ -98,6 +98,7 @@ class CityController < ApplicationController
           flash.now[:create_errors] << "Please select 'Region'"
           flash.now[:country_region_error] = "has-error"
         end
+        @create_country = "selected"
         @country_name_input = params[:country][:name]
         case params[:country][:region]
         when "Africa"
