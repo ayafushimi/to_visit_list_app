@@ -16,6 +16,15 @@ class CityController < ApplicationController
     end
   end
 
+  get "/cities/:id" do
+    if logged_in?
+      @city = City.find(params[:id])
+      erb :"/cities/show"
+    else
+      redirect_to_login
+    end
+  end
+
   post "/cities/create" do
     empty_name = params[:name].empty?
     exist_city = City.all.detect{|x| x.name == params[:name]}

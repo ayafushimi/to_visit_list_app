@@ -1,0 +1,15 @@
+<h1><%=@city.name%></h1>
+
+<a class="btn btn-default" href="/cities/<%=@city.id%>/edit" role="button">edit</a>
+<a class="btn btn-default" href="/cities/<%=@city.id%>/delete" role="button">delete</a>
+
+<h3><%=@city.country.name%></h3>
+
+<h3>
+  <%@city.rank.times do%>
+    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+  <%end%>
+  <%(5 - @city.rank).times do%>
+    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+  <%end%>
+</h3>
