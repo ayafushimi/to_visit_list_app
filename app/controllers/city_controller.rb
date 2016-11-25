@@ -80,7 +80,7 @@ class CityController < ApplicationController
       end
       current_user.countries.each do |country|
         if country.id == params[:country_id].to_i
-          var = "@counrtry_#{country.id}"
+          var = "@country_#{country.id}"
           value = "selected"
           eval("#{var} = value")
         end
