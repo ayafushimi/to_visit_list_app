@@ -31,10 +31,12 @@ class CityController < ApplicationController
     empty_rank = params[:rank].empty?
     empty_country = params[:country_id].empty?
     create_country = (params[:country_id] == "create_country")
-    empty_country_name = create_country && params[:country][:name].empty?
-    exist_country = Country.all.detect{|x| x.name == params[:country][:name]}
-    empty_region = create_country && params[:country][:region].empty?
-
+    if create_country
+      empty_country_name = params[:country][:name].empty?
+      exist_country = Country.all.detect{|x| x.name == params[:country][:name]}
+      empty_region =  params[:country][:region].empty?
+    end
+    
     if !(empty_name||exist_city||empty_rank||empty_country||empty_country_name||exist_country||empty_region)
       city = City.create(name:params[:name], rank:params[:rank])
       if !create_country
