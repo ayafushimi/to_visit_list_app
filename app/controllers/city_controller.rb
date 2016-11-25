@@ -10,6 +10,8 @@ class CityController < ApplicationController
 
   get "/cities/create" do
     if logged_in?
+      @country_name_disabled = ""
+      @country_region_disabled = ""
       erb :"/cities/create"
     else
       redirect_to_login
@@ -99,6 +101,8 @@ class CityController < ApplicationController
           flash.now[:country_region_error] = "has-error"
         end
         @create_country = "selected"
+        @country_name_disabled = ""
+        @country_region_disabled = ""
         @country_name_input = params[:country][:name]
         case params[:country][:region]
         when "Africa"

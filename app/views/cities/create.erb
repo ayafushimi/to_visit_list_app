@@ -66,12 +66,12 @@
 
   <div class="form-group <%=flash[:country_name_error]%>">
     <label class="control-label" for="coutry_name">Country Name</label>
-    <input class="form-control" type="text" name="country[name]" id="coutry_name" value="<%=@country_name_input%>" disabled>
+    <input class="form-control" type="text" name="country[name]" id="coutry_name" value="<%=@country_name_input%>" <%=@country_name_disabled%>>
   </div>
 
   <div class="form-group <%=flash[:country_region_error]%>">
     <label class="control-label" for="region">Region</label>
-    <select class="form-control" name="country[region]" id="region" disabled>
+    <select class="form-control" name="country[region]" id="region" <%=@country_region_disabled%>>
       <option value="">Select Region</option>
       <option value="Africa" <%=@region_africa%>>Africa</option>
       <option value="Americas" <%=@region_america%>>Americas</option>
