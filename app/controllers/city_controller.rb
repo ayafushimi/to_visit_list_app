@@ -114,6 +114,8 @@ class CityController < ApplicationController
           eval("#{var} = value")
         end
       end
+      @country_name_disabled = "disabled"
+      @country_region_disabled = "disabled"
 
       if create_country
         if empty_country_name
