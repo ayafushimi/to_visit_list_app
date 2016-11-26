@@ -54,6 +54,15 @@ class CityController < ApplicationController
     end
   end
 
+  get "/cities/:id/delete" do
+    if logged_in?
+      City.find(params[:id]).delete
+      erb :"/cities/index"
+    else
+      redirect_to_login
+    end
+  end
+
   post "/cities/create" do
     empty_name = params[:name].empty?
     exist_city = City.all.detect{|x| x.name == params[:name]}
@@ -247,6 +256,5 @@ class CityController < ApplicationController
       erb :"/cities/edit"
     end
   end
-
 
 end
