@@ -30,17 +30,12 @@ class CountryController < ApplicationController
     if logged_in?
       @country = Country.find(params[:id])
       @country_name_input = @country.name
-      case @country.region
-      when "Africa"
-        @region_africa = "selected"
-      when "Americas"
-        @region_america = "selected"
-      when "Asia"
-        @region_asia = "selected"
-      when "Europe"
-        @region_europe = "selected"
-      when "Oceania"
-        @region_oceania = "selected"
+      REGIONS.each do |region|
+        if @country.region == region
+          var = "@region_#{region}"
+          value = "selected"
+          eval("#{var} = value")
+        end
       end
       erb :"/countries/edit"
     else
@@ -99,17 +94,12 @@ class CountryController < ApplicationController
         flash.now[:city_rank_error] = "has-error"
       end
       @country_name_input = params[:country][:name]
-      case params[:country][:region]
-      when "Africa"
-        @region_africa = "selected"
-      when "Americas"
-        @region_america = "selected"
-      when "Asia"
-        @region_asia = "selected"
-      when "Europe"
-        @region_europe = "selected"
-      when "Oceania"
-        @region_oceania = "selected"
+      REGIONS.each do |region|
+        if params[:country][:region] == region
+          var = "@region_#{region}"
+          value = "selected"
+          eval("#{var} = value")
+        end
       end
       @city_name_input = params[:city][:name]
       case params[:city][:rank]
@@ -151,17 +141,12 @@ class CountryController < ApplicationController
         flash.now[:country_region_error] = "has-error"
       end
       @country_name_input = params[:country][:name]
-      case params[:country][:region]
-      when "Africa"
-        @region_africa = "selected"
-      when "Americas"
-        @region_america = "selected"
-      when "Asia"
-        @region_asia = "selected"
-      when "Europe"
-        @region_europe = "selected"
-      when "Oceania"
-        @region_oceania = "selected"
+      REGIONS.each do |region|
+        if params[:country][:region] == region
+          var = "@region_#{region}"
+          value = "selected"
+          eval("#{var} = value")
+        end
       end
       erb :"/countries/edit"
     end

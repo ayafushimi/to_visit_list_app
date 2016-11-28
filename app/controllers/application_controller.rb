@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, 'visitlist secret'
     use Rack::Flash
+    REGIONS = %w{ Africa Americas Asia Europe Oceania }
   end
 
   helpers do

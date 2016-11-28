@@ -73,11 +73,10 @@
     <label class="control-label" for="region">Region</label>
     <select class="form-control" name="country[region]" id="region" <%=@country_region_disabled%>>
       <option value="">Select Region</option>
-      <option value="Africa" <%=@region_africa%>>Africa</option>
-      <option value="Americas" <%=@region_america%>>Americas</option>
-      <option value="Asia" <%=@region_asia%>>Asia</option>
-      <option value="Europe" <%=@region_europe%>>Europe</option>
-      <option value="Oceania" <%=@region_oceania%>>Oceania</option>
+      <%REGIONS.each do |region|%>
+        <%var="@region_#{region}"%>
+        <option value=<%=region%> <%=eval(var)%>><%=region%></option>
+      <%end%>
     </select>
   </div>
 

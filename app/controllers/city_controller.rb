@@ -143,17 +143,12 @@ class CityController < ApplicationController
         @country_name_disabled = ""
         @country_region_disabled = ""
         @country_name_input = params[:country][:name]
-        case params[:country][:region]
-        when "Africa"
-          @region_africa = "selected"
-        when "Americas"
-          @region_america = "selected"
-        when "Asia"
-          @region_asia = "selected"
-        when "Europe"
-          @region_europe = "selected"
-        when "Oceania"
-          @region_oceania = "selected"
+        REGIONS.each do |region|
+          if params[:country][:region] == region
+            var = "@region_#{region}"
+            value = "selected"
+            eval("#{var} = value")
+          end
         end
       end
       erb :"/cities/create"
@@ -241,17 +236,12 @@ class CityController < ApplicationController
         @country_name_disabled = ""
         @country_region_disabled = ""
         @country_name_input = params[:country][:name]
-        case params[:country][:region]
-        when "Africa"
-          @region_africa = "selected"
-        when "Americas"
-          @region_america = "selected"
-        when "Asia"
-          @region_asia = "selected"
-        when "Europe"
-          @region_europe = "selected"
-        when "Oceania"
-          @region_oceania = "selected"
+        REGIONS.each do |region|
+          if params[:country][:region] == region
+            var = "@region_#{region}"
+            value = "selected"
+            eval("#{var} = value")
+          end
         end
       end
       erb :"/cities/edit"
