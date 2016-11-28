@@ -127,7 +127,7 @@ class CityController < ApplicationController
     @city = City.find(params[:id])
 
     empty_name = params[:name].empty?
-    exist_city = City.all.detect{|x| x.name == params[:name]}
+    exist_city = City.all.detect{|x| x.name == params[:name]} && params[:name] != @city.name
     empty_rank = params[:rank].empty?
     empty_country = params[:country_id].empty?
     create_country = (params[:country_id] == "create_country")
