@@ -100,17 +100,11 @@ class CountryController < ApplicationController
         end
       end
       @city_name_input = params[:city][:name]
-      case params[:city][:rank]
-      when "5"
-        @rank5 = "selected"
-      when "4"
-        @rank4 = "selected"
-      when "3"
-        @rank3 = "selected"
-      when "2"
-        @rank2 = "selected"
-      when "1"
-        @rank1 = "selected"
+      RANKS.each do |rank|
+        if params[:city][:rank] == rank
+          var = "@rank_#{rank}"
+          eval("#{var} = 'selected'")
+        end
       end
       erb :"/countries/create"
     end

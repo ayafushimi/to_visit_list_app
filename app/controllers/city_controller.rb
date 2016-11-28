@@ -32,20 +32,18 @@ class CityController < ApplicationController
     if logged_in?
       @city = City.find(params[:id])
       @name_input = @city.name
-      case @city.rank
-      when 5
-        @rank5 = "selected"
-      when 4
-        @rank4 = "selected"
-      when 3
-        @rank3 = "selected"
-      when 2
-        @rank2 = "selected"
-      when 1
-        @rank1 = "selected"
+      RANKS.each do |rank|
+        if @city.rank == rank.to_i
+          var = "@rank_#{rank}"
+          eval("#{var} = 'selected'")
+        end
       end
-      val = "@country_#{@city.country.id}"
-      eval("#{var} = 'selected'")
+      current_user.countries.each do |country|
+        if country.id == @city.country.id
+          var = "@country_#{country.id}"
+          eval("#{var} = 'selected'")
+        end
+      end
       @country_name_disabled = "disabled"
       @country_region_disabled = "disabled"
       erb :"/cities/edit"
@@ -104,17 +102,11 @@ class CityController < ApplicationController
       end
 
       @name_input = params[:name]
-      case params[:rank]
-      when "5"
-        @rank5 = "selected"
-      when "4"
-        @rank4 = "selected"
-      when "3"
-        @rank3 = "selected"
-      when "2"
-        @rank2 = "selected"
-      when "1"
-        @rank1 = "selected"
+      RANKS.each do |rank|
+        if params[:rank] == rank
+          var = "@rank_#{rank}"
+          eval("#{var} = 'selected'")
+        end
       end
       current_user.countries.each do |country|
         if country.id == params[:country_id].to_i
@@ -195,17 +187,11 @@ class CityController < ApplicationController
       end
 
       @name_input = params[:name]
-      case params[:rank]
-      when "5"
-        @rank5 = "selected"
-      when "4"
-        @rank4 = "selected"
-      when "3"
-        @rank3 = "selected"
-      when "2"
-        @rank2 = "selected"
-      when "1"
-        @rank1 = "selected"
+      RANKS.each do |rank|
+        if params[:rank] == rank
+          var = "@rank_#{rank}"
+          eval("#{var} = 'selected'")
+        end
       end
       current_user.countries.each do |country|
         if country.id == params[:country_id].to_i

@@ -9,6 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'visitlist secret'
     use Rack::Flash
     REGIONS = %w{ Africa Americas Asia Europe Oceania }
+    RANKS = %w{ 5 4 3 2 1 }
   end
 
   helpers do
