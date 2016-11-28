@@ -49,7 +49,11 @@ class CountryController < ApplicationController
 
   get "/countries/:id/delete" do
     if logged_in?
-      Country.find(params[:id]).delete
+      country=Country.find(params[:id])
+      country.cities.each do |city|
+        city.delete
+      end
+      country.delete
       redirect "/countries"
     else
       redirect_to_login
