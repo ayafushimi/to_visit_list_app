@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   get "/user" do
     if logged_in?
+      @home_page = "active"
       erb :"/users/index"
     else
       redirect_to_login

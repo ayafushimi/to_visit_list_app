@@ -2,6 +2,7 @@ class CountryController < ApplicationController
 
   get "/countries" do
     if logged_in?
+      @countries_page = "active"
       erb :"/countries/index"
     else
       redirect_to_login

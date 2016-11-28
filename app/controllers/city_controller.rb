@@ -2,6 +2,7 @@ class CityController < ApplicationController
 
   get "/cities" do
     if logged_in?
+      @cities_page = "active"
       erb :"/cities/index"
     else
       redirect_to_login
@@ -57,7 +58,7 @@ class CityController < ApplicationController
   get "/cities/:id/delete" do
     if logged_in?
       City.find(params[:id]).delete
-      erb :"/cities/index"
+      redirect "/cities"
     else
       redirect_to_login
     end

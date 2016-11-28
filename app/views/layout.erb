@@ -16,11 +16,14 @@
           <a href="/logout" class="btn btn-default navbar-btn btn-xs">Log out</a>
         </div>
 
-        <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="/user">Home</a></li>
-          <li role="presentation"><a href="/countries">Countries</a></li>
-          <li role="presentation"><a href="/cities">Cities</a></li>
-        </ul>
+        <nav class="navbar navbar-default">
+          <ul class="nav navbar-nav">
+            <li role="presentation" class=<%=@home_page%>><a href="/user">Home</a></li>
+            <li role="presentation" class=<%=@countries_page%>><a href="/countries">Countries</a></li>
+            <li role="presentation" class=<%=@cities_page%>><a href="/cities">Cities</a></li>
+          </ul>
+        </nav>
+
 
       <% else %>
 
