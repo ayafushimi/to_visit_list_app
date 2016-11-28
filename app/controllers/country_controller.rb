@@ -33,8 +33,7 @@ class CountryController < ApplicationController
       REGIONS.each do |region|
         if @country.region == region
           var = "@region_#{region}"
-          value = "selected"
-          eval("#{var} = value")
+          eval("#{var} = 'selected'")
         end
       end
       erb :"/countries/edit"
@@ -97,8 +96,7 @@ class CountryController < ApplicationController
       REGIONS.each do |region|
         if params[:country][:region] == region
           var = "@region_#{region}"
-          value = "selected"
-          eval("#{var} = value")
+          eval("#{var} = 'selected'")
         end
       end
       @city_name_input = params[:city][:name]
@@ -144,8 +142,7 @@ class CountryController < ApplicationController
       REGIONS.each do |region|
         if params[:country][:region] == region
           var = "@region_#{region}"
-          value = "selected"
-          eval("#{var} = value")
+          eval("#{var} = 'selected'")
         end
       end
       erb :"/countries/edit"

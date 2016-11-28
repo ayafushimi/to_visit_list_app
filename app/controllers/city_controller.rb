@@ -45,8 +45,7 @@ class CityController < ApplicationController
         @rank1 = "selected"
       end
       val = "@country_#{@city.country.id}"
-      value = "selected"
-      eval("#{val} = value")
+      eval("#{var} = 'selected'")
       @country_name_disabled = "disabled"
       @country_region_disabled = "disabled"
       erb :"/cities/edit"
@@ -120,8 +119,7 @@ class CityController < ApplicationController
       current_user.countries.each do |country|
         if country.id == params[:country_id].to_i
           var = "@country_#{country.id}"
-          value = "selected"
-          eval("#{var} = value")
+          eval("#{var} = 'selected'")
         end
       end
       @country_name_disabled = "disabled"
@@ -146,8 +144,7 @@ class CityController < ApplicationController
         REGIONS.each do |region|
           if params[:country][:region] == region
             var = "@region_#{region}"
-            value = "selected"
-            eval("#{var} = value")
+            eval("#{var} = 'selected'")
           end
         end
       end
@@ -213,8 +210,7 @@ class CityController < ApplicationController
       current_user.countries.each do |country|
         if country.id == params[:country_id].to_i
           var = "@country_#{country.id}"
-          value = "selected"
-          eval("#{var} = value")
+          eval("#{var} = 'selected'")
         end
       end
       @country_name_disabled = "disabled"
@@ -239,8 +235,7 @@ class CityController < ApplicationController
         REGIONS.each do |region|
           if params[:country][:region] == region
             var = "@region_#{region}"
-            value = "selected"
-            eval("#{var} = value")
+            eval("#{var} = 'selected'")
           end
         end
       end
