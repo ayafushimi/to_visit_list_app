@@ -60,7 +60,7 @@ class CountryController < ApplicationController
     empty_country_name = params[:country][:name].empty?
     empty_region = params[:country][:region].empty?
     exist_country = current_user.countries.detect{|x| x.name == params[:country][:name]}
-    exist_city = !params[:city][:name].empty? && !!City.all.detect{|x| x.name == params[:city][:name]}
+    exist_city = !params[:city][:name].empty? && !!current_user.cities.detect{|x| x.name == params[:city][:name]}
     empty_rank = !params[:city][:name].empty? && params[:city][:rank].empty?
 
     if !(empty_country_name||empty_region||exist_country||exist_city||empty_rank)
