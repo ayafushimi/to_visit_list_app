@@ -19,7 +19,7 @@
     <select class="form-control" name="rank" id="rank">
       <option value="">Select Rank</option>
       <%RANKS.each do |rank|%>
-        <%var="@rank_#{rank}"%>
+        <%var="@target#{rank}"%>
         <option value=<%=rank%> <%=eval(var)%>><%=rank%></option>
       <%end%>
     </select>
@@ -31,31 +31,31 @@
       <option value="">Select Country</option>
       <optgroup label="Africa">
         <%current_user.countries.all.select{|x| x.region=="Africa"}.each do |country|%>
-          <%var="@country_#{country.id}"%>
+          <%var="@target#{country.id}"%>
           <option value="<%=country.id%>" <%=eval(var)%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Americas">
         <%current_user.countries.all.select{|x| x.region=="Americas"}.each do |country|%>
-          <%var="@country_#{country.id}"%>
+          <%var="@target#{country.id}"%>
           <option value="<%=country.id%>" <%=eval(var)%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Asia">
         <%current_user.countries.all.select{|x| x.region=="Asia"}.each do |country|%>
-          <%var="@country_#{country.id}"%>
+          <%var="@target#{country.id}"%>
           <option value="<%=country.id%>" <%=eval(var)%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Europe">
         <%current_user.countries.all.select{|x| x.region=="Europe"}.each do |country|%>
-          <%var="@country_#{country.id}"%>
+          <%var="@target#{country.id}"%>
           <option value="<%=country.id%>" <%=eval(var)%>><%=country.name%></option>
         <%end%>
       </optgroup>
       <optgroup label="Oceania">
         <%current_user.countries.all.select{|x| x.region=="Oceania"}.each do |country|%>
-          <%var="@country_#{country.id}"%>
+          <%var="@target#{country.id}"%>
           <option value="<%=country.id%>" <%=eval(var)%>><%=country.name%></option>
         <%end%>
       </optgroup>
@@ -72,11 +72,11 @@
     <label class="control-label" for="region">Region</label>
     <select class="form-control" name="country[region]" id="region" <%=@country_region_disabled%>>
       <option value="">Select Region</option>
-      <option value="Africa" <%=@region_africa%>>Africa</option>
-      <option value="Americas" <%=@region_america%>>Americas</option>
-      <option value="Asia" <%=@region_asia%>>Asia</option>
-      <option value="Europe" <%=@region_europe%>>Europe</option>
-      <option value="Oceania" <%=@region_oceania%>>Oceania</option>
+      <%REGIONS.each do |region|%>
+        <%var="@target#{region}"%>
+        <option value=<%=region%> <%=eval(var)%>><%=region%></option>
+      <%end%>
+
     </select>
   </div>
 

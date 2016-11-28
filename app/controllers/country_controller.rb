@@ -30,12 +30,7 @@ class CountryController < ApplicationController
     if logged_in?
       @country = Country.find(params[:id])
       @country_name_input = @country.name
-      REGIONS.each do |region|
-        if @country.region == region
-          var = "@region_#{region}"
-          eval("#{var} = 'selected'")
-        end
-      end
+      selected_ctler(REGIONS, @country.region)
       erb :"/countries/edit"
     else
       redirect_to_login
@@ -93,19 +88,9 @@ class CountryController < ApplicationController
         flash.now[:city_rank_error] = "has-error"
       end
       @country_name_input = params[:country][:name]
-      REGIONS.each do |region|
-        if params[:country][:region] == region
-          var = "@region_#{region}"
-          eval("#{var} = 'selected'")
-        end
-      end
+      selected_ctler(REGIONS, params[:country][:region])
       @city_name_input = params[:city][:name]
-      RANKS.each do |rank|
-        if params[:city][:rank] == rank
-          var = "@rank_#{rank}"
-          eval("#{var} = 'selected'")
-        end
-      end
+      selected_ctler(RANKS, params[:city][:rank])
       erb :"/countries/create"
     end
   end
@@ -133,12 +118,7 @@ class CountryController < ApplicationController
         flash.now[:country_region_error] = "has-error"
       end
       @country_name_input = params[:country][:name]
-      REGIONS.each do |region|
-        if params[:country][:region] == region
-          var = "@region_#{region}"
-          eval("#{var} = 'selected'")
-        end
-      end
+      selected_ctler(REGIONS, params[:country][:region])
       erb :"/countries/edit"
     end
   end

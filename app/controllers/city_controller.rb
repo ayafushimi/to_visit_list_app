@@ -32,18 +32,10 @@ class CityController < ApplicationController
     if logged_in?
       @city = City.find(params[:id])
       @name_input = @city.name
-      RANKS.each do |rank|
-        if @city.rank == rank.to_i
-          var = "@rank_#{rank}"
-          eval("#{var} = 'selected'")
-        end
-      end
-      current_user.countries.each do |country|
-        if country.id == @city.country.id
-          var = "@country_#{country.id}"
-          eval("#{var} = 'selected'")
-        end
-      end
+      selected_ctler(RANKS, @city.rank.to_s)
+      country_ids = []
+      current_user.countries.each {|x| country_ids << x.id}
+      selected_ctler(country_ids, @city.country.id)
       @country_name_disabled = "disabled"
       @country_region_disabled = "disabled"
       erb :"/cities/edit"
@@ -102,18 +94,10 @@ class CityController < ApplicationController
       end
 
       @name_input = params[:name]
-      RANKS.each do |rank|
-        if params[:rank] == rank
-          var = "@rank_#{rank}"
-          eval("#{var} = 'selected'")
-        end
-      end
-      current_user.countries.each do |country|
-        if country.id == params[:country_id].to_i
-          var = "@country_#{country.id}"
-          eval("#{var} = 'selected'")
-        end
-      end
+      selected_ctler(RANKS, params[:rank])
+      country_ids = []
+      current_user.countries.each {|x| country_ids << x.id}
+      selected_ctler(country_ids, params[:country_id].to_i)
       @country_name_disabled = "disabled"
       @country_region_disabled = "disabled"
 
@@ -133,12 +117,7 @@ class CityController < ApplicationController
         @country_name_disabled = ""
         @country_region_disabled = ""
         @country_name_input = params[:country][:name]
-        REGIONS.each do |region|
-          if params[:country][:region] == region
-            var = "@region_#{region}"
-            eval("#{var} = 'selected'")
-          end
-        end
+        selected_ctler(REGIONS, params[:country][:region])
       end
       erb :"/cities/create"
     end
@@ -187,43 +166,30 @@ class CityController < ApplicationController
       end
 
       @name_input = params[:name]
-      RANKS.each do |rank|
-        if params[:rank] == rank
-          var = "@rank_#{rank}"
-          eval("#{var} = 'selected'")
-        end
-      end
-      current_user.countries.each do |country|
-        if country.id == params[:country_id].to_i
-          var = "@country_#{country.id}"
-          eval("#{var} = 'selected'")
-        end
-      end
+      selected_ctler(RANKS, params[:rank])
+      country_ids = []
+      current_user.countries.each {|x| country_ids << x.id}
+      selected_ctler(country_ids, params[:country_id].to_i)
       @country_name_disabled = "disabled"
       @country_region_disabled = "disabled"
 
       if create_country
         if empty_country_name
-          flash.now[:create_errors] << "Please enter 'Country Name'"
+          flash.now[:edit_errors] << "Please enter 'Country Name'"
           flash.now[:country_name_error] = "has-error"
         elsif exist_country
-          flash.now[:create_errors] << "This Country already exists. Please select from the avobe list"
+          flash.now[:edit_errors] << "This Country already exists. Please select from the avobe list"
           flash.now[:country_name_error] = "has-error"
         end
         if empty_region
-          flash.now[:create_errors] << "Please select 'Region'"
+          flash.now[:edit_errors] << "Please select 'Region'"
           flash.now[:country_region_error] = "has-error"
         end
         @create_country = "selected"
         @country_name_disabled = ""
         @country_region_disabled = ""
         @country_name_input = params[:country][:name]
-        REGIONS.each do |region|
-          if params[:country][:region] == region
-            var = "@region_#{region}"
-            eval("#{var} = 'selected'")
-          end
-        end
+        selected_ctler(REGIONS, params[:country][:region])
       end
       erb :"/cities/edit"
     end

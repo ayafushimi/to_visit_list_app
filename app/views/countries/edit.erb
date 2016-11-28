@@ -19,7 +19,7 @@
     <select class="form-control" name="country[region]" id="region">
       <option value="">Select Region</option>
       <%REGIONS.each do |region|%>
-        <%var="@region_#{region}"%>
+        <%var="@target#{region}"%>
         <option value=<%=region%> <%=eval(var)%>><%=region%></option>
       <%end%>
     </select>

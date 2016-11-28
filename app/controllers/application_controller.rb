@@ -24,6 +24,15 @@ class ApplicationController < Sinatra::Base
     def redirect_to_login
       redirect "/login"
     end
+
+    def selected_ctler(arr, target)
+      arr.each do |x|
+        if x == target
+          var = "@target#{x}"
+          eval("#{var} = 'selected'")
+        end
+      end
+    end
   end
 
   get "/" do
