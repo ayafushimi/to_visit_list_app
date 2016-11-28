@@ -10,11 +10,19 @@ class UsersController < ApplicationController
   end
 
   get "/signup" do
-    erb :"/users/signup"
+    if logged_in?
+      redirect "/user"
+    else
+      erb :"/users/signup"
+    end
   end
 
   get "/login" do
-    erb :"/users/login"
+    if logged_in?
+      redirect "/user"
+    else
+      erb :"/users/login"
+    end
   end
 
   get "/logout" do
