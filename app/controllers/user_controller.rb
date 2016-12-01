@@ -31,6 +31,16 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
+
+    # user = User.new(username: params[:username], password: params[:password])
+    #
+    # if user.save
+    #   # user = User.create(username: params[:username], password: params[:password])
+    #   session[:user_id] = user.id
+    #   redirect "/user"
+    # else
+    #   flash.now[user.errors.messages]
+    # end
     empty_name = params[:username].empty?
     empty_pass = params[:password].empty?
     exist_name = !!User.all.detect{|x| x.username == params[:username]}
