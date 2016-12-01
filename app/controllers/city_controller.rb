@@ -22,7 +22,11 @@ class CityController < ApplicationController
   get "/cities/:id" do
     if logged_in?
       @city = City.find(params[:id])
-      erb :"/cities/show"
+      if @city.country.user == current_user
+        erb :"/cities/show"
+      else
+        redirect "/user"
+      end
     else
       redirect_to_login
     end
@@ -31,14 +35,18 @@ class CityController < ApplicationController
   get "/cities/:id/edit" do
     if logged_in?
       @city = City.find(params[:id])
-      @name_input = @city.name
-      selected_ctler(RANKS, @city.rank.to_s)
-      country_ids = []
-      current_user.countries.each {|x| country_ids << x.id}
-      selected_ctler(country_ids, @city.country.id)
-      @country_name_disabled = "disabled"
-      @country_region_disabled = "disabled"
-      erb :"/cities/edit"
+      if @city.country.user == current_user
+        @name_input = @city.name
+        selected_ctler(RANKS, @city.rank.to_s)
+        country_ids = []
+        current_user.countries.each {|x| country_ids << x.id}
+        selected_ctler(country_ids, @city.country.id)
+        @country_name_disabled = "disabled"
+        @country_region_disabled = "disabled"
+        erb :"/cities/edit"
+      else
+        redirect "/user"
+      end
     else
       redirect_to_login
     end
@@ -46,8 +54,13 @@ class CityController < ApplicationController
 
   get "/cities/:id/delete" do
     if logged_in?
-      City.find(params[:id]).delete
-      redirect "/cities"
+      city = City.find(params[:id])
+      if city.country.user == current_user
+        city.delete
+        redirect "/cities"
+      else
+        redirect "/user"
+      end
     else
       redirect_to_login
     end

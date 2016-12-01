@@ -20,7 +20,11 @@ class CountryController < ApplicationController
   get "/countries/:id" do
     if logged_in?
       @country = Country.find(params[:id])
-      erb :"/countries/show"
+      if @country.user == current_user
+        erb :"/countries/show"
+      else
+        redirect "/user"
+      end
     else
       redirect_to_login
     end
@@ -29,9 +33,13 @@ class CountryController < ApplicationController
   get "/countries/:id/edit" do
     if logged_in?
       @country = Country.find(params[:id])
-      @country_name_input = @country.name
-      selected_ctler(REGIONS, @country.region)
-      erb :"/countries/edit"
+      if @country.user == current_user
+        @country_name_input = @country.name
+        selected_ctler(REGIONS, @country.region)
+        erb :"/countries/edit"
+      else
+        redirect "/user"
+      end
     else
       redirect_to_login
     end
@@ -40,11 +48,15 @@ class CountryController < ApplicationController
   get "/countries/:id/delete" do
     if logged_in?
       country=Country.find(params[:id])
-      country.cities.each do |city|
-        city.delete
+      if country.user == current_user
+        country.cities.each do |city|
+          city.delete
+        end
+        country.delete
+        redirect "/countries"
+      else
+        redirect "/user"
       end
-      country.delete
-      redirect "/countries"
     else
       redirect_to_login
     end
